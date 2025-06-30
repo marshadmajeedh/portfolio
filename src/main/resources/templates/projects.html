@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Projects - Marshad Ahamed</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #4e54c8;
+            --secondary-color: #2b2d42;
+            --accent-color: #ff7e5f;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gradient-start: #4e54c8;
+            --gradient-end: #8f94fb;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--light-color) 0%, #e6e9f0 100%);
+            color: var(--dark-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            padding: 3rem;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 3rem auto;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .project-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 2rem;
+            background: white;
+            position: relative;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.2s; }
+        .project-card:nth-child(2) { animation-delay: 0.4s; }
+        .project-card:nth-child(3) { animation-delay: 0.6s; }
+        .project-card:nth-child(4) { animation-delay: 0.8s; }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover::after {
+            height: 8px;
+        }
+
+        .project-card .card-body {
+            padding: 2rem;
+        }
+
+        .project-card h5 {
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .project-card p {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-outline-primary {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(78, 84, 200, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(78, 84, 200, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, var(--accent-color), #ff9a5f);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(255, 126, 95, 0.4);
+        }
+
+        .back-btn {
+            margin-top: 3rem;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background-color: #f0f2f5;
+            color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+                margin: 2rem auto;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .project-card .card-body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container animate__animated animate__fadeIn">
+    <h1>My Projects</h1>
+
+    <div class="row">
+        <div class="col-md-6" th:each="project : ${projects}">
+            <div class="card project-card">
+                <div class="card-body">
+                    <h5 th:text="${project[0]}">Project Title</h5>
+                    <p th:text="${project[1]}">Project Description</p>
+                    <div class="mb-3">
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">Spring Boot</span>
+                        <span class="tech-badge">React</span>
+                    </div>
+                    <a th:href="${project[2]}" target="_blank" class="btn btn-outline-primary">
+                        <i class="fab fa-github me-2"></i>View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample projects (would be replaced by Thymeleaf in actual implementation) -->
+        <div class="col-md-6">
+            <div class="card project-card">
+                <div class="card-body">
+                    <h5>Portfolio Website</h5>
+                    <p>A responsive portfolio website built with HTML, CSS, and Bootstrap featuring modern animations and interactive elements.</p>
+                    <div class="mb-3">
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">Bootstrap</span>
+                        <span class="tech-badge">JavaScript</span>
+                    </div>
+                    <a href="#" target="_blank" class="btn btn-outline-primary">
+                        <i class="fab fa-github me-2"></i>View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card project-card">
+                <div class="card-body">
+                    <h5>E-commerce Platform</h5>
+                    <p>Full-stack e-commerce application with Spring Boot backend and React frontend, featuring product management, cart functionality, and user authentication.</p>
+                    <div class="mb-3">
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">Spring Boot</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">MySQL</span>
+                    </div>
+                    <a href="#" target="_blank" class="btn btn-outline-primary">
+                        <i class="fab fa-github me-2"></i>View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card project-card">
+                <div class="card-body">
+                    <h5>Task Management App</h5>
+                    <p>A productivity application for managing tasks with drag-and-drop functionality, due date reminders, and team collaboration features.</p>
+                    <div class="mb-3">
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">MongoDB</span>
+                        <span class="tech-badge">Express</span>
+                    </div>
+                    <a href="#" target="_blank" class="btn btn-outline-primary">
+                        <i class="fab fa-github me-2"></i>View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-btn">
+        <a href="/" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-2"></i>Back to Home
+        </a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Animation trigger for project cards on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const projectCards = document.querySelectorAll('.project-card');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        projectCards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+    });
+</script>
+</body>
+</html>
